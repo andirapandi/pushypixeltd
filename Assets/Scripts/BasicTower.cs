@@ -21,10 +21,4 @@ public class BasicTower : MonoBehaviour
         newBullet.GetComponent<Rigidbody>().AddForce((target.transform.position - transform.position).normalized * bulletSpeed, ForceMode.VelocityChange);
         Destroy(newBullet, lifeTime);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

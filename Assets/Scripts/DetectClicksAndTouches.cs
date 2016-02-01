@@ -27,6 +27,10 @@ public class DetectClicksAndTouches : MonoBehaviour
 
     Vector2 worldStartPoint;
 
+    public int zoomMax = 8;
+    public int zoomMin = -2;
+    float curZoom = 0;
+
     void Start()
     {
         if (camera != null)
@@ -126,18 +130,29 @@ public class DetectClicksAndTouches : MonoBehaviour
             {
                 try
                 {
-                Vector2 worldDelta = this.getWorldPoint(Vector3to2(Input.mousePosition)) - this.worldStartPoint;
+                    Vector2 worldDelta = this.getWorldPoint(Vector3to2(Input.mousePosition)) - this.worldStartPoint;
 
-                Camera.main.transform.Translate(
-                    -worldDelta.x,
-                    -worldDelta.y,
-                    0
-                );
+                    Camera.main.transform.Translate(
+                        -worldDelta.x,
+                        -worldDelta.y,
+                        0
+                    );
 
                 }
                 catch (System.Exception)
                 {
                 }
+            }
+            else if (Input.mouseScrollDelta != Vector2.zero)
+            {
+                var delta = Input.mouseScrollDelta.y;
+                var direction = _camera.transform.forward;
+                if (curZoom + delta > zoomMax)
+                    delta = zoomMax - curZoom;
+                if (curZoom + delta < zoomMin)
+                    delta = curZoom - zoomMin;
+                curZoom += delta;
+                _camera.transform.position += direction.normalized * delta;
             }
         }
     }
@@ -155,6 +170,6 @@ public class DetectClicksAndTouches : MonoBehaviour
             return new Vector2(hit.point.x, hit.point.z);
         else
             throw new System.Exception();
-            //return Vector2.;
+        //return Vector2.;
     }
 }
