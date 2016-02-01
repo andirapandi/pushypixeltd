@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PathThroughObjects : MonoBehaviour
 {
@@ -10,11 +11,44 @@ public class PathThroughObjects : MonoBehaviour
     //public float goalDistance = 0.1f;
     float lastDistance = float.MaxValue;
 
+    public GameObject pathWayIcon;
+
     // Use this for initialization
     void Start()
     {
         currentPathIndex = 0;
         UpdateDirection();
+        CreatePath3DRepresentation();
+    }
+
+    private void CreatePath3DRepresentation()
+    {
+        // Create object between transform.position and first waypoint
+        var directionVector = pathPoints[0].transform.position - transform.position;
+        var pathObjectPosition = directionVector / 2 + transform.position;
+        var pathObjectOrientation = Quaternion.LookRotation(pathPoints[0].transform.position - transform.position);
+        var pathObject = Instantiate(pathWayIcon, pathObjectPosition, pathObjectOrientation) as GameObject;
+        var geometryScale = Vector3.one;
+        geometryScale.z = directionVector.magnitude;
+        pathObject.transform.localScale = geometryScale;
+        var textureScale = Vector2.one;
+        textureScale.y = Mathf.Ceil(directionVector.magnitude);
+        pathObject.GetComponent<Renderer>().material.mainTextureScale = textureScale;
+
+        for (var i = 1; i < pathPoints.Length; ++i)
+        {
+            directionVector = pathPoints[i].transform.position - pathPoints[i - 1].transform.position;
+            pathObjectPosition = directionVector / 2 + pathPoints[i - 1].transform.position;
+            pathObjectOrientation = Quaternion.LookRotation(pathPoints[i].transform.position - pathPoints[i - 1].transform.position);
+            pathObject = Instantiate(pathWayIcon, pathObjectPosition, pathObjectOrientation) as GameObject;
+            geometryScale = Vector3.one;
+            geometryScale.z = directionVector.magnitude;
+            pathObject.transform.localScale = geometryScale;
+            textureScale = Vector2.one;
+            textureScale.y = Mathf.Ceil(directionVector.magnitude);
+            pathObject.GetComponent<Renderer>().material.mainTextureScale = textureScale;
+
+        }
     }
 
     // Update is called once per frame

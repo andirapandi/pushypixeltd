@@ -22,8 +22,8 @@ public class DetectClicksAndTouches : MonoBehaviour
     //This is the actual camera we reference in the update loop, set in Start()
     private Camera _camera;
 
-    Vector3 dragStartPos = Vector3.zero;
-    Vector3 cameraStartPos = Vector3.zero;
+    //Vector3 dragStartPos = Vector3.zero;
+    //Vector3 cameraStartPos = Vector3.zero;
 
     Vector2 worldStartPoint;
 
