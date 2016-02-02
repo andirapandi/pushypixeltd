@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff01d6bc59da8c48a5eb04cf3b9d4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 112144, guid: aee21d5c3d847854893c3c6d109568a1, type: 2}
+  towerSelector: {fileID: 1009336869}
 --- !u!1 &1009336865
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +285,8 @@ MonoBehaviour:
   - {fileID: 1826920366}
   towers:
   - {fileID: 112144, guid: aee21d5c3d847854893c3c6d109568a1, type: 2}
+  - {fileID: 112144, guid: b322f34c9613cb34391f4a0766c83391, type: 2}
+  - {fileID: 112144, guid: 54f6c5ed2e6f5f242a23f81ce393998e, type: 2}
   towerIconRotateRate: 90
 --- !u!114 &1009336870
 MonoBehaviour:

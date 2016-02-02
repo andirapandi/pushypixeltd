@@ -17,14 +17,26 @@ public class BasicEnemy : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.tag == "Bullet")
+    //    {
+    //        health--;
+    //        Destroy(collision.collider.gameObject);
+    //        if (health <= 0)
+    //        {
+    //            Destroy(collision.collider.gameObject);
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //}
+
+    public void Hit(int damage)
     {
-        if (collision.collider.tag == "Bullet")
+        health -= damage;
+        if (health <= 0)
         {
-            health--;
-            Destroy(collision.collider.gameObject);
-            if (health <= 0)
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

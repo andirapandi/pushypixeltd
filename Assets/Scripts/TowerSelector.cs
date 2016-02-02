@@ -22,6 +22,11 @@ public class TowerSelector : MonoBehaviour
         towerIcons[selectedTower].transform.Rotate(Vector3.up * Time.deltaTime * towerIconRotateRate);
     }
 
+    public GameObject GetSelectedTower()
+    {
+        return towers[selectedTower];
+    }
+
     public void SetSelectedTower(GameObject inputTower)
     {
         var index = 0;
