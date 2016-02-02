@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PathThroughObjects : MonoBehaviour
 {
@@ -21,30 +23,29 @@ public class PathThroughObjects : MonoBehaviour
         CreatePath3DRepresentation();
     }
 
+    IEnumerable<Transform> getPathTransforms ()
+    {
+        yield return this.transform;
+        foreach (var t in this.pathPoints)
+            yield return t.transform;
+    }
+
     private void CreatePath3DRepresentation()
     {
-        // Create object between transform.position and first waypoint
-        var directionVector = pathPoints[0].transform.position - transform.position;
-        var pathObjectPosition = directionVector / 2 + transform.position;
-        var pathObjectOrientation = Quaternion.LookRotation(pathPoints[0].transform.position - transform.position);
-        var pathObject = Instantiate(pathWayIcon, pathObjectPosition, pathObjectOrientation) as GameObject;
-        var geometryScale = Vector3.one;
-        geometryScale.z = directionVector.magnitude;
-        pathObject.transform.localScale = geometryScale;
-        var textureScale = Vector2.one;
-        textureScale.y = Mathf.Ceil(directionVector.magnitude);
-        pathObject.GetComponent<Renderer>().material.mainTextureScale = textureScale;
-
-        for (var i = 1; i < pathPoints.Length; ++i)
+        var list = getPathTransforms().ToList();
+        for (var i = 1; i < list.Count; ++i)
         {
-            directionVector = pathPoints[i].transform.position - pathPoints[i - 1].transform.position;
-            pathObjectPosition = directionVector / 2 + pathPoints[i - 1].transform.position;
-            pathObjectOrientation = Quaternion.LookRotation(pathPoints[i].transform.position - pathPoints[i - 1].transform.position);
-            pathObject = Instantiate(pathWayIcon, pathObjectPosition, pathObjectOrientation) as GameObject;
-            geometryScale = Vector3.one;
+            var last = list[i - 1];
+            var cur = list[i];
+            // Create object between transform.position and first waypoint
+            var directionVector = cur.position - last.position;
+            var pathObjectPosition = directionVector / 2 + last.position;
+            var pathObjectOrientation = Quaternion.LookRotation(cur.position - last.position);
+            var pathObject = Instantiate(pathWayIcon, pathObjectPosition, pathObjectOrientation) as GameObject;
+            var geometryScale = Vector3.one;
             geometryScale.z = directionVector.magnitude;
             pathObject.transform.localScale = geometryScale;
-            textureScale = Vector2.one;
+            var textureScale = Vector2.one;
             textureScale.y = Mathf.Ceil(directionVector.magnitude);
             pathObject.GetComponent<Renderer>().material.mainTextureScale = textureScale;
 
@@ -73,7 +74,11 @@ public class PathThroughObjects : MonoBehaviour
                 lastDistance = float.MaxValue;
             }
             else
-                movementDirection = Vector3.zero;
+            {
+                //movementDirection = Vector3.zero;
+                Destroy(gameObject);
+                // add logic to deduct player health
+            }
         }
         else
             lastDistance = sqrDistance;
