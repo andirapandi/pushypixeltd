@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] pathPoints;
+    GameObject[] pathPoints;
     public GameObject pathWayIcon;
 
     public GameObject[] spawnList;
@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerable<Transform> getPathTransforms()
     {
-        //yield return this.transform;
+        yield return this.transform;
         foreach (var t in this.pathPoints)
             yield return t.transform;
     }
@@ -43,6 +43,24 @@ public class EnemySpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //List<Transform> children
+        pathPoints = transform.Cast<Transform>().Select(t => t.gameObject).ToArray();
+        //var test = transform as IEnumerable;
+        //List<Transform> children2 = (transform as IEnumerable).Cast<Transform>().ToList();
+        //var test2 = transform as IEnumerable<Transform>;
+        //var test3 = transform as IEnumerable<Component>;
+        //var test4 = transform.GetEnumerator();
+        //var test5 = transform as IEnumerable<object>;
+        ////pathPoints = test.Select(t => ((Transform)t).gameObject).ToArray();
+        //foreach (var t in test)
+        //{
+        //    var x = t;
+        //}
+        //foreach (var t in transform)
+        //{
+        //    var x = t;
+        //}
+        //pathPoints = transform.GetEnumerator() (transform as IEnumerable<Transform>).Select(t => t.gameObject).ToArray(); //.Select(t => t).ToArray(); // GetComponents< GameObject>().Select(component => component.gameObject).ToArray();
         CreatePath3DRepresentation();
         InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
@@ -52,10 +70,10 @@ public class EnemySpawner : MonoBehaviour
         // spawn next enemy in spawn list
         var enemy = Instantiate(spawnList[spawnIndex]) as GameObject;
 
-        enemy.transform.position = this.pathPoints[0].transform.position; // - 0.1f * (this.pathPoints[1].transform.position - this.pathPoints[0].transform.position);
+        enemy.transform.position = this.transform.position; // this.pathPoints[0].transform.position; // - 0.1f * (this.pathPoints[1].transform.position - this.pathPoints[0].transform.position);
 
         // Set enemy path information
-        enemy.GetComponent<PathThroughObjects>().pathPoints = this.pathPoints.ToList().GetRange(1, this.pathPoints.Length-2).ToArray();
+        enemy.GetComponent<PathThroughObjects>().pathPoints = pathPoints; // this.pathPoints.ToList().GetRange(1, this.pathPoints.Length - 2).ToArray();
 
         // or
         // reference.SendMessage("SetPathPoints", this.pathPoints);
