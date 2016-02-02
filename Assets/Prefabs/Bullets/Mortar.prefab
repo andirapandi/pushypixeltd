@@ -12,9 +12,9 @@ GameObject:
   - 135: {fileID: 13595778}
   - 23: {fileID: 2302098}
   - 54: {fileID: 5434270}
-  - 114: {fileID: 11426260}
+  - 114: {fileID: 11478966}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: Mortar
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 189170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,7 +42,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 85f4d4060d53c6d43b1335d2e722eb0c, type: 2}
+  - {fileID: 2100000, guid: ee82c4309e1caee44bba7735daf6b6d8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -75,12 +75,12 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11426260
+--- !u!114 &11478966
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,9 +88,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 189170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7643deec415b687489637d270bcf806d, type: 3}
+  m_Script: {fileID: 11500000, guid: c40cd947d0d06ae40b6a70d8963a4246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 156190, guid: 0404008f3a8295e459f9a24f3fafacfb, type: 2}
+  explosionDuration: 0.4
+  initialScale: 0.5
+  endScale: 3
 --- !u!135 &13595778
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -129,7 +133,31 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 85f4d4060d53c6d43b1335d2e722eb0c, type: 2}
+      objectReference: {fileID: 2100000, guid: ee82c4309e1caee44bba7735daf6b6d8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 156190, guid: 0404008f3a8295e459f9a24f3fafacfb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: explosionDuration
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 189170}

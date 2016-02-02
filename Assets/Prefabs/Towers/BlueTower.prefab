@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3343580}
   - 65: {fileID: 6579048}
   - 23: {fileID: 2380920}
-  - 114: {fileID: 11405710}
+  - 114: {fileID: 11491406}
   m_Layer: 0
   m_Name: BlueTower
   m_TagString: Untagged
@@ -76,7 +76,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11405710
+--- !u!114 &11491406
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -84,14 +84,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 112144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b76cd3672b9bef45b4faac4435dfac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8200ab1dd2e3da24083c23647a060951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 189170, guid: ccd359d2470f01d4cacee8d2e138c50d, type: 2}
-  bulletSpeed: 20
-  fireRate: 2
-  lifeTime: 5
-  fireRadius: 5
+  bullet: {fileID: 189170, guid: 37357f20d52684c4fac700317f5a4c8f, type: 2}
+  fireRate: 0.3
+  lifeTime: 10
+  fireRadius: 8
+  lobAmount: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 189170, guid: ccd359d2470f01d4cacee8d2e138c50d, type: 2}
+      objectReference: {fileID: 189170, guid: 37357f20d52684c4fac700317f5a4c8f, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
@@ -123,6 +123,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ee82c4309e1caee44bba7735daf6b6d8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: lifeTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 112144}
