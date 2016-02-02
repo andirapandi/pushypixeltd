@@ -27,7 +27,7 @@ public class DetectClicksAndTouches : MonoBehaviour
 
     Vector2 worldStartPoint;
 
-    public int zoomMax = 8;
+    public int zoomMax = 6; //8;
     public int zoomMin = -2;
     float curZoom = 0;
 

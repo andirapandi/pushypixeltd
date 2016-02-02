@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] spawnList;
     public float spawnTime;
+    public float timeBeforeStart = 5f;
     int spawnIndex = 0;
 
     IEnumerable<Transform> getPathTransforms()
@@ -44,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         //List<Transform> children
-        pathPoints = transform.Cast<Transform>().Select(t => t.gameObject).ToArray();
+        GetPathPointsFromHierarchy();
         //var test = transform as IEnumerable;
         //List<Transform> children2 = (transform as IEnumerable).Cast<Transform>().ToList();
         //var test2 = transform as IEnumerable<Transform>;
@@ -62,7 +63,12 @@ public class EnemySpawner : MonoBehaviour
         //}
         //pathPoints = transform.GetEnumerator() (transform as IEnumerable<Transform>).Select(t => t.gameObject).ToArray(); //.Select(t => t).ToArray(); // GetComponents< GameObject>().Select(component => component.gameObject).ToArray();
         CreatePath3DRepresentation();
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
+        InvokeRepeating("Spawn", timeBeforeStart, spawnTime);
+    }
+
+    private void GetPathPointsFromHierarchy()
+    {
+        pathPoints = transform.Cast<Transform>().Select(t => t.gameObject).ToArray();
     }
 
     void Spawn()
@@ -88,5 +94,17 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnDrawGizmos()
+    {
+        GetPathPointsFromHierarchy();
+
+        if (pathPoints == null || pathPoints.Length == 0)
+            return;
+
+        Gizmos.DrawLine(transform.position, pathPoints[0].transform.position);
+        for (int i = 1; i < pathPoints.Length; i++)
+            Gizmos.DrawLine(pathPoints[i - 1].transform.position, pathPoints[i].transform.position);
     }
 }
