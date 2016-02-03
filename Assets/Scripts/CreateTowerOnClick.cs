@@ -7,7 +7,11 @@ public class CreateTowerOnClick : MonoBehaviour
 
     void Clicked(Vector3 position)
     {
-        var tower = towerSelector.GetSelectedTower();
-        Instantiate(tower, position + Vector3.up * 0.5f, tower.transform.rotation);
+        if (ResourceManager.energy >= towerSelector.GetSelectedTowerCost())
+        {
+            var tower = towerSelector.GetSelectedTower();
+            Instantiate(tower, position + Vector3.up * 0.5f, tower.transform.rotation);
+            ResourceManager.energy -= towerSelector.GetSelectedTowerCost();
+        }
     }
 }

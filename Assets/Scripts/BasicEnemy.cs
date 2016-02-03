@@ -37,6 +37,7 @@ public class BasicEnemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            ResourceManager.energy += 20;
         }
     }
 }

@@ -5,6 +5,7 @@ public class TowerSelector : MonoBehaviour
 {
     public GameObject[] towerIcons;
     public GameObject[] towers;
+    public int[] towerCosts;
 
     public float towerIconRotateRate = 90f;
 
@@ -25,6 +26,11 @@ public class TowerSelector : MonoBehaviour
     public GameObject GetSelectedTower()
     {
         return towers[selectedTower];
+    }
+
+    public int GetSelectedTowerCost()
+    {
+        return towerCosts[selectedTower];
     }
 
     public void SetSelectedTower(GameObject inputTower)
