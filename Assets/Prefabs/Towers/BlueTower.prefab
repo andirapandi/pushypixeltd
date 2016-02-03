@@ -91,7 +91,7 @@ MonoBehaviour:
   bulletSpeed: 0.8
   fireRate: 0.3
   lifeTime: 10
-  fireRadius: 7
+  fireRadius: 6
   lobAmount: 9
 --- !u!1001 &100100000
 Prefab:
@@ -130,7 +130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fireRadius
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lobAmount

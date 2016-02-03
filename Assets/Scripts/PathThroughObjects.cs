@@ -53,6 +53,7 @@ public class PathThroughObjects : MonoBehaviour
     {
         // where we are going
         movementDirection = (pathPoints[currentPathIndex].transform.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(movementDirection);
     }
 
     //void SetPathPoints(GameObject[] inputPathPoints)
