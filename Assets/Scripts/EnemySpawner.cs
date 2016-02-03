@@ -96,6 +96,7 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    #region gizmos (lines) drawn in editor, not at runtime
     void OnDrawGizmos()
     {
         GetPathPointsFromHierarchy();
@@ -107,4 +108,5 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 1; i < pathPoints.Length; i++)
             Gizmos.DrawLine(pathPoints[i - 1].transform.position, pathPoints[i].transform.position);
     }
+    #endregion
 }
