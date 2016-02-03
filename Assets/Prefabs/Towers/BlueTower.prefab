@@ -88,10 +88,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 189170, guid: 37357f20d52684c4fac700317f5a4c8f, type: 2}
+  bulletSpeed: 0.8
   fireRate: 0.3
   lifeTime: 10
-  fireRadius: 8
-  lobAmount: 10
+  fireRadius: 7
+  lobAmount: 9
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -109,7 +110,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: bulletSpeed
-      value: 20
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fireRate
@@ -126,6 +127,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: lifeTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fireRadius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lobAmount
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -38,7 +38,7 @@ public class MortarTower : MonoBehaviour
         float speed = lobAmount / -Physics.gravity.y;
 #else
         // shoot a little more into the direction, where enmy will be moving
-        var enemydirection = target.transform.rotation * Vector3.forward;
+        var enemydirection = target.transform.rotation * Vector3.forward; // roatation * foward = direction
         var targetpos = target.transform.position + enemydirection;
         var horizontalForce = targetpos - transform.position;
         float speed = lobAmount / -Physics.gravity.y * bulletSpeed;
