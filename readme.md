@@ -10,6 +10,8 @@ You can find the original video tutorial series on youtube, at [Tower Defense Ga
 Here is the overview of all of PushyPixels' work on youtube: [
 PushyPixels on youtube](https://www.youtube.com/user/PushyPixels)
 
+I am not PushyPixels, but he allowed uploading here.
+
 
 About meeself
 ----
@@ -17,7 +19,9 @@ You can find me here on [Github](https://github.com/andirapandi/), and on many o
 
 What it is all about
 ----
-This is the accompanying code to a Unity 3D tutorial (I am using Unity 5.3.1) on how to create a tower defense game with a first person view, as you can see on youtube.
+This is the accompanying code to a Unity 3D tutorial (I am using Unity 5.3.1) on how to create a tower defense game, as you can see on youtube.
+
+The game features 3 different tower types, basic bullet, slow effect and mortar/meteor, with projectile trajectory, explosion and area of effect, as well as some shoot ahead logic.
 
 I thought this may be helpful to others, so I upoaded it and made it public here.
 
